@@ -26,17 +26,17 @@ let automaticUpgrades = {
   locals: {
     price: 100,
     quantity: 0,
-    multiplier: 1
+    multiplier: 5
   },
   rovers: {
     price: 600,
     quantity: 0,
-    multiplier: 10
+    multiplier: 100
   },
   moonbase: {
     price: 1000000,
     quantity: 0,
-    multiplier: 10000
+    multiplier: 25000
   },
 };
 
@@ -96,7 +96,7 @@ function hireRover() {
 }
 
 function hireMoonBase() {
-  let base = automaticUpgrades.base;
+  let base = automaticUpgrades.moonbase;
   if (moonDust >= base.price) {
     base.quantity++;
     moonDust -= base.price;
@@ -106,23 +106,23 @@ function hireMoonBase() {
   update()
 }
 
-// function purchaseAutoUpgrade(upgrade) {
-//   let upg = automaticUpgrades.upgrade;
-//   if (moonDust >= upg.price) {
-//     upg.quantity++;
-//     moonDust -= upg.price;
-//     autoModifier += upg.multiplier;
-//     upg.price += Math.floor(upg.price * .5);
-//   }
-//   update()
-// }
-
 // function purchaseClickUpgrade(upgrade) {
 //   let upg = clickUpgrades.upgrade;
 //   if (moonDust >= upg.price) {
 //     upg.quantity++;
 //     moonDust -= upg.price;
 //     perClickModifier += upg.multiplier;
+//     upg.price += Math.floor(upg.price * .5);
+//   }
+//   update()
+// }
+
+// function purchaseAutoUpgrade(upgrade) {
+//   let upg = automaticUpgrades.upgrade;
+//   if (moonDust >= upg.price) {
+//     upg.quantity++;
+//     moonDust -= upg.price;
+//     autoModifier += upg.multiplier;
 //     upg.price += Math.floor(upg.price * .5);
 //   }
 //   update()
@@ -151,7 +151,6 @@ function mine() {
       moonDust += (upgrade.multiplier * upgrade.quantity);
     }
   }
-  console.log(moonDust)
   update()
 }
 
@@ -164,6 +163,8 @@ function update() {
   let excavatorCount = document.getElementById('purchased-excavator');
   let localsCount = document.getElementById('purchased-local');
   let roverCount = document.getElementById('purchased-rover');
+  let baseCount = document.getElementById('purchased-moonbase');
+
 
   dust.innerText = moonDust.toString();
   dpc.innerText = perClickModifier.toString()
@@ -173,6 +174,7 @@ function update() {
   excavatorCount.innerText = clickUpgrades.excavators.quantity.toString();
   localsCount.innerText = automaticUpgrades.locals.quantity.toString();
   roverCount.innerText = automaticUpgrades.rovers.quantity.toString();
+  baseCount.innerText = automaticUpgrades.moonbase.quantity.toString();
 }
 
 setTimer()
