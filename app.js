@@ -85,10 +85,32 @@ function hireRover() {
     rover.quantity++;
     moonDust -= rover.price;
     autoModifier += rover.multiplier;
-    rover.price += math.floor(rover.price * .5);
+    rover.price += Math.floor(rover.price * .5);
   }
   update()
 }
+
+// function purchaseAutoUpgrade(upgrade) {
+//   let upg = automaticUpgrades.upgrade;
+//   if (moonDust >= upg.price) {
+//     upg.quantity++;
+//     moonDust -= upg.price;
+//     autoModifier += upg.multiplier;
+//     upg.price += Math.floor(upg.price * .5);
+//   }
+//   update()
+// }
+
+// function purchaseClickUpgrade(upgrade) {
+//   let upg = clickUpgrades.upgrade;
+//   if (moonDust >= upg.price) {
+//     upg.quantity++;
+//     moonDust -= upg.price;
+//     perClickModifier += upg.multiplier;
+//     upg.price += Math.floor(upg.price * .5);
+//   }
+//   update()
+// }
 
 function setTimer() {
   time = setInterval(autoMine, 1000);
