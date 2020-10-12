@@ -1,0 +1,69 @@
+body {
+  background-image: url('https://media4.giphy.com/media/UYBDCJjwOd9Re/giphy.gif');
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  height: 10vh
+}
+
+main {
+  flex-grow: 1;
+}
+
+footer {
+  height: 10vh
+}
+
+.bg-cardinal-o {
+  background-color: rgba(138, 9, 9, 0.40);
+}
+
+.text-wrap {
+  word-wrap: break-word;
+}
+
+.rotate {
+  animation: rotation 100s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.font-cool {
+  font-family: 'Oswald', sans-serif;
+}
+
+.text-cool {
+  color: rgb(138, 9, 9);
+}
+
+.font-2 {
+  font-size: 2em;
+}
+
+.font-3 {
+  font-size: 3em;
+}
+
+.font-5 {
+  font-size: 5em;
+}
+
+.font-10 {
+  font-size: 10em;
+}
