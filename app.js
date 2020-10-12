@@ -6,16 +6,19 @@ let time;
 
 let clickUpgrades = {
   pickaxes: {
+    name: 'pickaxes',
     price: 50,
     quantity: 0,
     multiplier: 1
   },
   lasers: {
+    name: 'lasers',
     price: 1000,
     quantity: 0,
     multiplier: 20
   },
   excavators: {
+    name: 'excavators',
     price: 10000,
     quantity: 0,
     multiplier: 200
@@ -24,109 +27,58 @@ let clickUpgrades = {
 
 let automaticUpgrades = {
   locals: {
+    name: 'locals',
     price: 100,
     quantity: 0,
     multiplier: 5
   },
   rovers: {
+    name: 'rovers',
     price: 600,
     quantity: 0,
     multiplier: 100
   },
   moonbase: {
+    name: 'moonbase',
     price: 1000000,
     quantity: 0,
     multiplier: 25000
   },
 };
 
-function buyPickaxe() {
-  let pickaxe = clickUpgrades.pickaxes;
-  if (moonDust >= pickaxe.price) {
-    pickaxe.quantity++;
-    moonDust -= pickaxe.price;
-    perClickModifier += pickaxe.multiplier;
-    pickaxe.price += Math.floor(pickaxe.price * .5);
+function purchaseClickUpgrade(upgrade) {
+  for (const key in clickUpgrades) {
+    if (clickUpgrades.hasOwnProperty(key)) {
+      const upg = clickUpgrades[key];
+      if (upg.name == upgrade) {
+        if (moonDust >= upg.price) {
+          upg.quantity++;
+          moonDust -= upg.price;
+          perClickModifier += upg.multiplier;
+          upg.price += Math.floor(upg.price * .5);
+        }
+      }
+    }
+    update()
   }
-  update()
 }
 
-function buyLaser() {
-  let laser = clickUpgrades.lasers;
-  if (moonDust >= laser.price) {
-    laser.quantity++;
-    moonDust -= laser.price;
-    perClickModifier += laser.multiplier;
-    laser.price += Math.floor(laser.price * .5);
+function purchaseAutoUpgrade(upgrade) {
+  for (const key in automaticUpgrades) {
+    if (automaticUpgrades.hasOwnProperty(key)) {
+      const upg = automaticUpgrades[key];
+      if (upg.name == upgrade) {
+        if (moonDust >= upg.price) {
+          upg.quantity++;
+          moonDust -= upg.price;
+          autoModifier += upg.multiplier;
+          upg.price += Math.floor(upg.price * .5);
+        }
+      }
+    }
+    update()
   }
-  update()
 }
-
-function buyExcavator() {
-  let excavator = clickUpgrades.excavators;
-  if (moonDust >= excavator.price) {
-    excavator.quantity++;
-    moonDust -= excavator.price;
-    perClickModifier += excavator.multiplier;
-    excavator.price += Math.floor(excavator.price * .5);
-  }
-  update()
-}
-
-function hireLocal() {
-  let local = automaticUpgrades.locals;
-  if (moonDust >= local.price) {
-    local.quantity++;
-    moonDust -= local.price;
-    autoModifier += local.multiplier;
-    local.price += Math.floor(local.price * .5);
-  }
-  update()
-}
-
-function hireRover() {
-  let rover = automaticUpgrades.rovers;
-  if (moonDust >= rover.price) {
-    rover.quantity++;
-    moonDust -= rover.price;
-    autoModifier += rover.multiplier;
-    rover.price += Math.floor(rover.price * .5);
-  }
-  update()
-}
-
-function hireMoonBase() {
-  let base = automaticUpgrades.moonbase;
-  if (moonDust >= base.price) {
-    base.quantity++;
-    moonDust -= base.price;
-    autoModifier += base.multiplier;
-    base.price += Math.floor(base.price * .5);
-  }
-  update()
-}
-
-// function purchaseClickUpgrade(upgrade) {
-//   let upg = clickUpgrades.upgrade;
-//   if (moonDust >= upg.price) {
-//     upg.quantity++;
-//     moonDust -= upg.price;
-//     perClickModifier += upg.multiplier;
-//     upg.price += Math.floor(upg.price * .5);
-//   }
-//   update()
-// }
-
-// function purchaseAutoUpgrade(upgrade) {
-//   let upg = automaticUpgrades.upgrade;
-//   if (moonDust >= upg.price) {
-//     upg.quantity++;
-//     moonDust -= upg.price;
-//     autoModifier += upg.multiplier;
-//     upg.price += Math.floor(upg.price * .5);
-//   }
-//   update()
-// }
 
 function setTimer() {
   time = setInterval(autoMine, 1000);
@@ -175,6 +127,39 @@ function update() {
   localsCount.innerText = automaticUpgrades.locals.quantity.toString();
   roverCount.innerText = automaticUpgrades.rovers.quantity.toString();
   baseCount.innerText = automaticUpgrades.moonbase.quantity.toString();
+
+
+  // if (moonDust >= clickUpgrades.pickaxes.price) {
+  //   document.getElementById('pickaxe-btn').removeAttribute('disabled');
+  // } else {
+  //   document.getElementById('pickaxe-btn').setAttribute('diasabled', "");
+  // }
+  // if (moonDust >= clickUpgrades.pickaxes.price) {
+  //   document.getElementById('laser-btn').removeAttribute('disabled');
+  // } else {
+  //   document.getElementById('laser-btn').setAttribute('diasabled', "");
+  // }
+  // if (moonDust >= clickUpgrades.pickaxes.price) {
+  //   document.getElementById('excavator-btn').removeAttribute('disabled');
+  // } else {
+  //   document.getElementById('excavator-btn').setAttribute('diasabled', "");
+  // }
+  // if (moonDust >= automaticUpgrades.pickaxes.price) {
+  //   document.getElementById('local-btn').removeAttribute('disabled');
+  // } else {
+  //   document.getElementById('local-btn').setAttribute('diasabled', "");
+  // }
+  // if (moonDust >= automaticUpgrades.pickaxes.price) {
+  //   document.getElementById('rover-btn').removeAttribute('disabled');
+  // } else {
+  //   document.getElementById('rover-btn').setAttribute('diasabled', "");
+  // }
+  // if (moonDust >= automaticUpgrades.pickaxes.price) {
+  //   document.getElementById('moonbase-btn').removeAttribute('disabled');
+  // } else {
+  //   document.getElementById('moonbase-btn').setAttribute('diasabled', "");
+  // }
+
 }
 
 setTimer()

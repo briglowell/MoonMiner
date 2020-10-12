@@ -52,7 +52,7 @@
           <br>
           <span>hired rover: <span id="purchased-rover">0</span></span>
           <br>
-          <span>hired rover: <span id="purchased-moonbase">0</span></span>
+          <span>moon bases: <span id="purchased-moonbase">0</span></span>
         </div>
       </div>
       <div class=" col-12 col-sm-6 text-center align-self-center order-sm-2 order-0">
@@ -70,20 +70,21 @@
         </div>
         <div class="text-center">
           <div class="col-8">
-            <button class="btn btn-outline-danger" onclick="buyPickaxe()"><i class="ra ra-mining-diamonds"></i>
+            <button id="pickaxe-btn" class="btn btn-outline-danger" onclick="purchaseClickUpgrade('pickaxes')"><i
+                class="ra ra-mining-diamonds"></i>
             </button>
           </div>
           <div class="col-8 my-2 ">
-            <button class="btn btn-outline-danger" onclick="buyLaser()"><i class="ra ra-target-laser"
-                aria-hidden="true"></i>
+            <button id="laser-btn" class="btn btn-outline-danger" onclick="purchaseClickUpgrade('lasers')"><i
+                class="ra ra-target-laser" aria-hidden="true"></i>
             </button>
           </div>
           <div class="col-8">
-            <button class="btn btn-outline-danger" onclick="buyExcavator()">
+            <button id="excavator-btn" class="btn btn-outline-danger" onclick="purchaseClickUpgrade('excavators')">
               <i class="fa fa-train" aria-hidden="true"></i>
             </button>
           </div>
-          <!-- <div class="col-8"><button class="btn btn-outline-danger" onclick=""></button></div> -->
+
         </div>
         <div class="col-8 bg-cardinal-o text-center mt-3">
           <p>Passive:</p>
@@ -91,24 +92,20 @@
         <div class="text-center">
 
           <div class="col-8">
-            <button class="btn btn-outline-danger" onclick="hireLocal()">
+            <button id="local-btn" class="btn btn-outline-danger" onclick="purchaseAutoUpgrade('locals')">
               <i class="ra ra-muscle-up" aria-hidden="true"></i>
             </button>
           </div>
           <div class="col-8">
-            <button class="btn btn-outline-danger my-2" onclick="hireRover()">
+            <button id="rover-btn" class="btn btn-outline-danger my-2" onclick="purchaseAutoUpgrade('rovers')">
               <i class="fa fa-truck" aria-hidden="true"></i>
             </button>
           </div>
           <div class="col-8">
-            <button class="btn btn-outline-danger my-2" onclick="hireMoonBase()">
+            <button id="moonbase-btn" class="btn btn-outline-danger my-2" onclick="purchaseAutoUpgrade('moonbase')">
               <i class="ra ra-tower" aria-hidden="true"></i>
             </button>
           </div>
-          <!-- <div class="col-8"><button class="btn btn-outline-danger" onclick=""></button>
-          </div>
-          <div class="col-8"><button class="btn btn-outline-danger" onclick=""></button>
-          </div> -->
         </div>
 
       </div>
