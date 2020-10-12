@@ -46,6 +46,11 @@ let automaticUpgrades = {
   },
 };
 
+/**
+ * passes in the upgrade name
+ * purchases click upgrade if has enough money.
+ * @param  {string} upgrade manually have to pass string when called
+ */
 function purchaseClickUpgrade(upgrade) {
   for (const key in clickUpgrades) {
     if (clickUpgrades.hasOwnProperty(key)) {
@@ -63,6 +68,11 @@ function purchaseClickUpgrade(upgrade) {
   }
 }
 
+/**
+ * passes in the upgrade name
+ * purchases auto upgrade if has enough money.
+ * @param  {string} upgrade manually have to pass string when called
+ */
 function purchaseAutoUpgrade(upgrade) {
   for (const key in automaticUpgrades) {
     if (automaticUpgrades.hasOwnProperty(key)) {
@@ -80,10 +90,14 @@ function purchaseAutoUpgrade(upgrade) {
   }
 }
 
+/**Global Timer every 1 second
+ */
 function setTimer() {
   time = setInterval(autoMine, 1000);
 }
 
+/**fires off every second, handles auto upgrades
+ */
 function autoMine() {
   for (const key in automaticUpgrades) {
     if (automaticUpgrades.hasOwnProperty(key)) {
@@ -94,7 +108,8 @@ function autoMine() {
   update();
 }
 
-
+/**fires off every click of moon, handles click upgrades
+ */
 function mine() {
   moonDust++;
   for (const key in clickUpgrades) {
@@ -106,6 +121,8 @@ function mine() {
   update()
 }
 
+/**draws updated changes to page
+ */
 function update() {
   let dust = document.getElementById('moon-dust-count');
   let dpc = document.getElementById('dpc');
@@ -117,7 +134,6 @@ function update() {
   let roverCount = document.getElementById('purchased-rover');
   let baseCount = document.getElementById('purchased-moonbase');
 
-
   dust.innerText = moonDust.toString();
   dpc.innerText = perClickModifier.toString()
   auto.innerText = autoModifier.toString()
@@ -127,39 +143,6 @@ function update() {
   localsCount.innerText = automaticUpgrades.locals.quantity.toString();
   roverCount.innerText = automaticUpgrades.rovers.quantity.toString();
   baseCount.innerText = automaticUpgrades.moonbase.quantity.toString();
-
-
-  // if (moonDust >= clickUpgrades.pickaxes.price) {
-  //   document.getElementById('pickaxe-btn').removeAttribute('disabled');
-  // } else {
-  //   document.getElementById('pickaxe-btn').setAttribute('diasabled', "");
-  // }
-  // if (moonDust >= clickUpgrades.pickaxes.price) {
-  //   document.getElementById('laser-btn').removeAttribute('disabled');
-  // } else {
-  //   document.getElementById('laser-btn').setAttribute('diasabled', "");
-  // }
-  // if (moonDust >= clickUpgrades.pickaxes.price) {
-  //   document.getElementById('excavator-btn').removeAttribute('disabled');
-  // } else {
-  //   document.getElementById('excavator-btn').setAttribute('diasabled', "");
-  // }
-  // if (moonDust >= automaticUpgrades.pickaxes.price) {
-  //   document.getElementById('local-btn').removeAttribute('disabled');
-  // } else {
-  //   document.getElementById('local-btn').setAttribute('diasabled', "");
-  // }
-  // if (moonDust >= automaticUpgrades.pickaxes.price) {
-  //   document.getElementById('rover-btn').removeAttribute('disabled');
-  // } else {
-  //   document.getElementById('rover-btn').setAttribute('diasabled', "");
-  // }
-  // if (moonDust >= automaticUpgrades.pickaxes.price) {
-  //   document.getElementById('moonbase-btn').removeAttribute('disabled');
-  // } else {
-  //   document.getElementById('moonbase-btn').setAttribute('diasabled', "");
-  // }
-
 }
 
 setTimer()
