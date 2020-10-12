@@ -31,7 +31,12 @@ let automaticUpgrades = {
   rovers: {
     price: 600,
     quantity: 0,
-    multiplier: 20
+    multiplier: 10
+  },
+  moonbase: {
+    price: 1000000,
+    quantity: 0,
+    multiplier: 10000
   },
 };
 
@@ -86,6 +91,17 @@ function hireRover() {
     moonDust -= rover.price;
     autoModifier += rover.multiplier;
     rover.price += Math.floor(rover.price * .5);
+  }
+  update()
+}
+
+function hireMoonBase() {
+  let base = automaticUpgrades.base;
+  if (moonDust >= base.price) {
+    base.quantity++;
+    moonDust -= base.price;
+    autoModifier += base.multiplier;
+    base.price += Math.floor(base.price * .5);
   }
   update()
 }
@@ -157,7 +173,6 @@ function update() {
   excavatorCount.innerText = clickUpgrades.excavators.quantity.toString();
   localsCount.innerText = automaticUpgrades.locals.quantity.toString();
   roverCount.innerText = automaticUpgrades.rovers.quantity.toString();
-
 }
 
 setTimer()
